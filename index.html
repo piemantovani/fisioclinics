@@ -87,6 +87,7 @@ img { max-width:100%; height:auto; display:block; }
 }
 .logo span { color: var(--blue); }
 .nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links > .nav-item { display: flex; align-items: center; }
 .nav-links a {
   font-size: 14px;
   font-weight: 500;
@@ -106,6 +107,60 @@ img { max-width:100%; height:auto; display:block; }
   transition: background var(--transition);
 }
 .nav-cta:hover { background: var(--blue-dark); color: var(--white) !important; }
+
+/* ===== DROPDOWN MENU ===== */
+.nav-item { position: relative; }
+.nav-item > a::after {
+  content: '';
+  display: inline-block;
+  width: 0; height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  margin-left: 5px;
+  vertical-align: middle;
+  transition: transform var(--transition);
+}
+.nav-item:hover > a::after { transform: rotate(180deg); }
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -12px;
+  min-width: 220px;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.2s ease;
+  z-index: 200;
+}
+.nav-item:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdown a {
+  display: block;
+  padding: 9px 18px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: var(--gray-600) !important;
+  border-bottom: none !important;
+  transition: background var(--transition), color var(--transition);
+}
+.dropdown a:hover {
+  background: var(--blue-light);
+  color: var(--blue) !important;
+}
+.dropdown .divider {
+  height: 1px;
+  background: var(--gray-100);
+  margin: 4px 0;
+}
 
 /* ===== HERO ===== */
 .hero {
@@ -755,13 +810,13 @@ img { max-width:100%; height:auto; display:block; }
         <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
         Via ..., Pesaro (PU)
       </a>
-      <a href="tel:072133958">
+      <a href="tel:0721405717">
         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-        0721-33958
+        0721 405717
       </a>
-      <a href="mailto:info@fisioclinics.it">
+      <a href="mailto:info@fisioclinicspesaro.it">
         <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        info@fisioclinics.it
+        info@fisioclinicspesaro.it
       </a>
     </div>
     <div class="right">
@@ -777,9 +832,25 @@ img { max-width:100%; height:auto; display:block; }
     <a href="#" class="logo">Fisio<span>clinics</span></a>
     <div class="nav-links">
       <a href="#" class="active">Home</a>
-      <a href="#" onclick="showPage('poliambulatorio');return false">Servizi</a>
+      <div class="nav-item">
+        <a href="#" onclick="showPage('poliambulatorio');return false">Servizi</a>
+        <div class="dropdown">
+          <a href="#" onclick="showPage('poliambulatorio');return false">Poliambulatorio</a>
+          <a href="#">Fisioterapia</a>
+          <a href="#">Kinesiologia</a>
+        </div>
+      </div>
       <a href="#">Diagnostica</a>
-      <a href="#">Partner</a>
+      <div class="nav-item">
+        <a href="#">Partner</a>
+        <div class="dropdown">
+          <a href="#">Assicurazioni</a>
+          <a href="#">Società sportive</a>
+          <a href="#">Aziende e associazioni</a>
+          <a href="#">Università</a>
+          <a href="#">Collaborazioni</a>
+        </div>
+      </div>
       <a href="#">Fisioclinics Lab</a>
       <a href="#" class="nav-cta">Prenota</a>
     </div>
@@ -812,7 +883,7 @@ img { max-width:100%; height:auto; display:block; }
       <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
       <div>
         <h4>Prenota un appuntamento</h4>
-        <p>Chiama il <strong>0721-33958</strong><br>o scrivici via email</p>
+        <p>Chiama il <strong>0721 405717</strong><br>o scrivici via email</p>
       </div>
     </div>
     <div class="info-item">
@@ -983,7 +1054,7 @@ img { max-width:100%; height:auto; display:block; }
   <div class="inner">
     <div>
       <div class="label">Prenota un appuntamento</div>
-      <div class="phone">0721-33958</div>
+      <div class="phone">0721 405717</div>
     </div>
     <a href="#" class="btn">Scrivici una email →</a>
   </div>
@@ -997,8 +1068,8 @@ img { max-width:100%; height:auto; display:block; }
       <p>Poliambulatorio di eccellenza a Pesaro per la tua salute e il tuo benessere. Un servizio organizzato su appuntamento che si distingue per costanza e puntualità.</p>
       <p style="margin-top:14px">
         Via ..., Pesaro (PU)<br>
-        Tel. 0721-33958<br>
-        info@fisioclinics.it
+        Tel. 0721 405717<br>
+        info@fisioclinicspesaro.it
       </p>
     </div>
     <div>
@@ -1043,8 +1114,8 @@ img { max-width:100%; height:auto; display:block; }
   <div class="inner">
     <div class="left">
       <a href="#"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Via ..., Pesaro (PU)</a>
-      <a href="tel:072133958"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>0721-33958</a>
-      <a href="mailto:info@fisioclinics.it"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>info@fisioclinics.it</a>
+      <a href="tel:0721405717"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>0721 405717</a>
+      <a href="mailto:info@fisioclinicspesaro.it"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>info@fisioclinicspesaro.it</a>
     </div>
     <div class="right">
       <a href="#" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -1058,9 +1129,25 @@ img { max-width:100%; height:auto; display:block; }
     <a href="#" onclick="showPage('home');return false" class="logo">Fisio<span>clinics</span></a>
     <div class="nav-links">
       <a href="#" onclick="showPage('home');return false">Home</a>
-      <a href="#" class="active">Servizi</a>
+      <div class="nav-item">
+        <a href="#" class="active">Servizi</a>
+        <div class="dropdown">
+          <a href="#" onclick="showPage('poliambulatorio');return false">Poliambulatorio</a>
+          <a href="#">Fisioterapia</a>
+          <a href="#">Kinesiologia</a>
+        </div>
+      </div>
       <a href="#">Diagnostica</a>
-      <a href="#">Partner</a>
+      <div class="nav-item">
+        <a href="#">Partner</a>
+        <div class="dropdown">
+          <a href="#">Assicurazioni</a>
+          <a href="#">Società sportive</a>
+          <a href="#">Aziende e associazioni</a>
+          <a href="#">Università</a>
+          <a href="#">Collaborazioni</a>
+        </div>
+      </div>
       <a href="#">Fisioclinics Lab</a>
       <a href="#" class="nav-cta">Prenota</a>
     </div>
@@ -1089,7 +1176,7 @@ img { max-width:100%; height:auto; display:block; }
         <h2>Il nostro poliambulatorio</h2>
         <p>Fisioclinics Medical Center è un'eccellenza polispecialistica a livello nazionale perché può contare su più di 65 medici, tra i migliori d'Italia, non solo di Ortopedia e Traumatologia, ma una vera e propria équipe suddivisa in 30 branche specialistiche.</p>
         <p>Un servizio di visite organizzato su appuntamento che si distingue per costanza e puntualità.</p>
-        <a href="tel:072133958" class="hero-btn" style="font-size:14px;padding:10px 22px;margin-top:8px">Chiamaci: 0721-33958</a>
+        <a href="tel:0721405717" class="hero-btn" style="font-size:14px;padding:10px 22px;margin-top:8px">Chiamaci: 0721 405717</a>
       </div>
     </div>
   </div>
@@ -1141,7 +1228,7 @@ img { max-width:100%; height:auto; display:block; }
   <div class="inner">
     <div>
       <div class="label">Prenota un appuntamento</div>
-      <div class="phone">0721-33958</div>
+      <div class="phone">0721 405717</div>
     </div>
     <a href="#" class="btn">Scrivici una email →</a>
   </div>
@@ -1149,7 +1236,7 @@ img { max-width:100%; height:auto; display:block; }
 
 <footer class="footer">
   <div class="inner">
-    <div><h5>Fisioclinics</h5><p>Poliambulatorio di eccellenza a Pesaro.</p><p style="margin-top:14px">Via ..., Pesaro (PU)<br>Tel. 0721-33958<br>info@fisioclinics.it</p></div>
+    <div><h5>Fisioclinics</h5><p>Poliambulatorio di eccellenza a Pesaro.</p><p style="margin-top:14px">Via ..., Pesaro (PU)<br>Tel. 0721 405717<br>info@fisioclinicspesaro.it</p></div>
     <div><h5>Servizi</h5><ul><li><a href="#">Poliambulatorio</a></li><li><a href="#">Fisioterapia</a></li><li><a href="#">Kinesiologia</a></li><li><a href="#">Diagnostica</a></li></ul></div>
     <div><h5>Link utili</h5><ul><li><a href="#">Partner</a></li><li><a href="#">Fisioclinics Lab</a></li><li><a href="#">Contatti</a></li><li><a href="#">Privacy policy</a></li></ul></div>
     <div><h5>Orari</h5><p>Lunedì — Venerdì<br>8:00 - 20:00</p><p style="margin-top:10px">Sabato<br>8:00 - 13:00</p></div>
@@ -1168,8 +1255,8 @@ img { max-width:100%; height:auto; display:block; }
   <div class="inner">
     <div class="left">
       <a href="#"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Via ..., Pesaro (PU)</a>
-      <a href="tel:072133958"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>0721-33958</a>
-      <a href="mailto:info@fisioclinics.it"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>info@fisioclinics.it</a>
+      <a href="tel:0721405717"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>0721 405717</a>
+      <a href="mailto:info@fisioclinicspesaro.it"><svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>info@fisioclinicspesaro.it</a>
     </div>
     <div class="right">
       <a href="#" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -1183,9 +1270,25 @@ img { max-width:100%; height:auto; display:block; }
     <a href="#" onclick="showPage('home');return false" class="logo">Fisio<span>clinics</span></a>
     <div class="nav-links">
       <a href="#" onclick="showPage('home');return false">Home</a>
-      <a href="#" class="active" onclick="showPage('poliambulatorio');return false">Servizi</a>
+      <div class="nav-item">
+        <a href="#" class="active" onclick="showPage('poliambulatorio');return false">Servizi</a>
+        <div class="dropdown">
+          <a href="#" onclick="showPage('poliambulatorio');return false">Poliambulatorio</a>
+          <a href="#">Fisioterapia</a>
+          <a href="#">Kinesiologia</a>
+        </div>
+      </div>
       <a href="#">Diagnostica</a>
-      <a href="#">Partner</a>
+      <div class="nav-item">
+        <a href="#">Partner</a>
+        <div class="dropdown">
+          <a href="#">Assicurazioni</a>
+          <a href="#">Società sportive</a>
+          <a href="#">Aziende e associazioni</a>
+          <a href="#">Università</a>
+          <a href="#">Collaborazioni</a>
+        </div>
+      </div>
       <a href="#">Fisioclinics Lab</a>
       <a href="#" class="nav-cta">Prenota</a>
     </div>
@@ -1296,7 +1399,7 @@ img { max-width:100%; height:auto; display:block; }
   <div class="inner">
     <div>
       <div class="label">Prenota una visita ortopedica</div>
-      <div class="phone">0721-33958</div>
+      <div class="phone">0721 405717</div>
     </div>
     <a href="#" class="btn">Scrivici una email →</a>
   </div>
@@ -1304,7 +1407,7 @@ img { max-width:100%; height:auto; display:block; }
 
 <footer class="footer">
   <div class="inner">
-    <div><h5>Fisioclinics</h5><p>Poliambulatorio di eccellenza a Pesaro.</p><p style="margin-top:14px">Via ..., Pesaro (PU)<br>Tel. 0721-33958<br>info@fisioclinics.it</p></div>
+    <div><h5>Fisioclinics</h5><p>Poliambulatorio di eccellenza a Pesaro.</p><p style="margin-top:14px">Via ..., Pesaro (PU)<br>Tel. 0721 405717<br>info@fisioclinicspesaro.it</p></div>
     <div><h5>Servizi</h5><ul><li><a href="#">Poliambulatorio</a></li><li><a href="#">Fisioterapia</a></li><li><a href="#">Kinesiologia</a></li><li><a href="#">Diagnostica</a></li></ul></div>
     <div><h5>Link utili</h5><ul><li><a href="#">Partner</a></li><li><a href="#">Fisioclinics Lab</a></li><li><a href="#">Contatti</a></li><li><a href="#">Privacy policy</a></li></ul></div>
     <div><h5>Orari</h5><p>Lunedì — Venerdì<br>8:00 - 20:00</p><p style="margin-top:10px">Sabato<br>8:00 - 13:00</p></div>
